@@ -11,17 +11,22 @@ for (let i = 0; i < pieces.length; i++) {
   // Création des balises
   const imageElement = document.createElement("img");
   imageElement.src = article.image;
+
   const nomElement = document.createElement("h2");
   nomElement.innerText = article.nom;
+
   const prixElement = document.createElement("p");
   prixElement.innerText = `Prix: ${article.prix} € (${
     article.prix < 35 ? "€" : "€€€"
   })`;
+
   const categorieElement = document.createElement("p");
   categorieElement.innerText = article.categorie ?? "(aucune catégorie)";
+
   const descriptionElement = document.createElement("p");
   descriptionElement.innerText =
     article.description ?? "Pas de description pour le moment.";
+
   const stockElement = document.createElement("p");
   stockElement.innerText = article.disponibilite
     ? "En stock"
@@ -57,4 +62,23 @@ boutonFiltrer.addEventListener("click", function () {
     return piece.prix <= 35;
   });
   console.log(piecesFiltrees);
+});
+
+const boutonDescription = document.querySelector(".btn-description");
+
+boutonDescription.addEventListener("click", function () {
+  const filtreDescription = pieces.filter(function (piece) {
+    return piece.description;
+  });
+  console.log(filtreDescription);
+});
+
+const boutonDecroissant = document.querySelector(".btn-decroissant");
+
+boutonDecroissant.addEventListener("click", function () {
+  const filtreDecroissant = Array.from(pieces);
+  filtreDecroissant.sort(function (a, b) {
+    return b.prix - a.prix;
+  });
+  console.log(filtreDecroissant);
 });
